@@ -7,6 +7,11 @@ all > location > national, state
 Serializer all: id, has_many: states
 Serializer states: belongs_to: all, has_many: state_parks, national_parks
 
+CRUD functionality for parks
+Scope to display only state parks
+Scope to display only national parks
+Scope to display by state
+
 
 
 
