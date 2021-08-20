@@ -31,8 +31,6 @@ class Seed
       puts "parks #{i}: Name is #{park2.name} location is #{park2.location} and national park is #{park2.national} and state park is #{park2.state}" 
     end
   end
-
 end
-
 
 Seed.begin

@@ -1,8 +1,12 @@
 class ParksController < ApplicationController
+  
   def index
     if location = params[:location]
       @location = Park.location(location)
       json_response(@location) 
+    elsif page = params[:page]
+      @park_page = Park.page(page)
+      json_response(@park_page)
     else
       @park_all = Park.all
       json_response(@park_all)

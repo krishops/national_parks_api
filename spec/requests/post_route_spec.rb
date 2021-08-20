@@ -27,10 +27,21 @@ describe "post a park route", :type => :request do
   end
 end
 
-describe 'post park route - exceptions' do
+describe 'post park route - all true exception' do
 
   before do
     post '/parks', params: { :name => 'test_park', :location => 'OR', :national => true, :state => true }
+  end
+
+  it 'returns an exception status' do
+    expect(JSON.parse(response.body)['message']).to eq("Set either national or state parameter to true")
+  end
+end
+
+describe 'post park route - all false exception' do
+
+  before do
+    post '/parks', params: { :name => 'test_park', :location => 'OR' }
   end
 
   it 'returns an exception status' do

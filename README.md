@@ -41,6 +41,8 @@ You can now restart the server at localhost:3000 by running `docker-compose up`.
 
 http://localhost:3000/parks returns all parks in the database
 
+http://localhost:3000/parks?page=PAGE# returns parks by 20 entries per page
+
 http://localhost:3000/stateparks returns only state parks
 
 http://localhost:3000/nationalparks returns only national parks
@@ -50,7 +52,7 @@ http://localhost:3000/parks?location=STATE-ABBREVIATION replace STATE-ABBREVIATI
 ## Project Testing
 
 Within the root directory, run the command `docker-compose run web bundle exec rspec` to run the rspec tests of the project.
-Testing should output: **10 examples, 0 failures**
+Testing should output: **11 examples, 0 failures**
 
 ## Known Bugs
 
