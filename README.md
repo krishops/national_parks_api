@@ -1,3 +1,17 @@
+National Parks: name, location
+State Parks: name, location
+scope based on location(state it's in)
+display all using park serialization
+all > location > national, state
+
+Serializer all: id, has_many: states
+Serializer states: belongs_to: all, has_many: state_parks, national_parks
+
+
+
+
+
+
 ## Description
 
 This is a basic scaffolded Rails API using Docker with Ruby 2.6.5, Rails 5.2.4, and Postgres 12.1. This project can be used in lieu of installing Ruby, Rails and Postgres on your machine when you are working with Rails APIs during week 6 of Epicodus. When you run `docker-compose up`, Docker will create two containers on your machine: a Ruby/Rails environment running the local server and a Postgres container where your database is stored.

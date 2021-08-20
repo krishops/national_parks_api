@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  Rails.application.routes.draw do
       # resources :park
-      resources :national
-      resources :state
+      # resources :national
+      # resources :state
   
-  end
 end
