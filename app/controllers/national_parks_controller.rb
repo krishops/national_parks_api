@@ -1,0 +1,3 @@
+class NationalParksController < ApplicationController
+  
+end
