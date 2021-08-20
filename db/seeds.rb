@@ -8,23 +8,31 @@
 class Seed
 
   def self.begin
+    Park.destroy_all
     seed = Seed.new
     seed.generate_parks
   end
 
   def generate_parks
-    1.times do |i|
-      park = Park.create!(list: "All")
-        20.times do |i|
-          state = State.create!(code: Faker::Address.unique.state_abbr, park_id: park.id)
-          4.times do |i|
-            NationalPark.create!(name: Faker::Hipster.sentence(word_count: 2), state_id: state.id)
-            StatePark.create!(name: Faker::Hipster.sentence(word_count: 2), state_id: state.id)
-          end
-        end
-      end
+    20.times do |i|
+      park1 = Park.create!(
+        name: Faker::Mountain.unique.range,
+        location: Faker::Address.state_abbr,
+        national: true
+      )
+      puts "parks #{i}: Name is #{park1.name} location is #{park1.location} and national park is #{park1.national} and state park is #{park1.state}" 
+    end
+    20.times do|i|
+      park2 = Park.create!(
+        name: Faker::Mountain.unique.name,
+        location: Faker::Address.state_abbr,
+        state: true
+      )
+      puts "parks #{i}: Name is #{park2.name} location is #{park2.location} and national park is #{park2.national} and state park is #{park2.state}" 
     end
   end
+
+end
 
 
 Seed.begin

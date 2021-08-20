@@ -1,5 +1,6 @@
 class Park < ApplicationRecord
-  attr_accessor :id, :states_ids
-
-  has_many :states
+  validates :name, presence: true
+  validates :location, presence: true
+  validates :national, presence: true
+  validates :state, presence: true
 end
