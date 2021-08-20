@@ -1,7 +1,22 @@
 class ParksController < ApplicationController
   def index
-    @parks = Park.all
-    json_response(@parks)
+    if location = params[:location]
+      @location = Park.location(location)
+      json_response(@location) 
+    else
+      @park_all = Park.all
+      json_response(@park_all)
+    end
+  end
+
+  def state
+    @state = Park.state
+    json_response(@state)
+  end
+
+  def national
+    @national = Park.national
+    json_response(@national)
   end
 
   def show
