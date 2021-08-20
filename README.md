@@ -1,71 +1,67 @@
-National Parks: name, location
-State Parks: name, location
-scope based on location(state it's in)
-display all using park serialization
-all > location > national, state
+# National Park API
 
-Serializer all: id, has_many: states
-Serializer states: belongs_to: all, has_many: state_parks, national_parks
+#### By Kristen Hopper
 
-CRUD functionality for parks
-Scope to display only state parks
-Scope to display only national parks
-Scope to display by state
+## Technologies Used
 
-
-
-
-
+* _Ruby_
+* _Rails_
+* _Postgres_
+* _Docker_
 
 ## Description
 
-This is a basic scaffolded Rails API using Docker with Ruby 2.6.5, Rails 5.2.4, and Postgres 12.1. This project can be used in lieu of installing Ruby, Rails and Postgres on your machine when you are working with Rails APIs during week 6 of Epicodus. When you run `docker-compose up`, Docker will create two containers on your machine: a Ruby/Rails environment running the local server and a Postgres container where your database is stored.
+This project demonstrates the student's ability to build an API using Ruby and Rails.
 
-### Windows Users
+## Setup/Installation Requirements
 
-You will need to uncomment the following line in `Dockerfile` for the `entrypoint.sh` script to run correctly:
+To use this project, you will first need to install [Docker](https://docs.docker.com/get-docker/). Once it is installed, run `docker pull ruby:2.6.5` in the terminal to pull and install the correct image of Ruby on your machine.
 
-```
-RUN sed -i -e 's/\r$//' /usr/bin/entrypoint.sh
-```
+You can now clone the project by running `git clone https://github.com/krishops/national_parks_api.git` in the terminal.
 
-This line switches the line ending format so it works correctly with Windows. (Note that if the line above is uncommented, the script won't run correctly with Mac machines.)
+Within the root directory of the project, run `docker-compose up --build` in the terminal to build the project. This will also start a local server that can be accessed in the browser at localhost:3000. 
 
-### Running Rails and Postgres Servers
+Ctrl-C out of the server and run the following commands:
 
-The included code has a single API endpoint at: `http://localhost:3000/quotes`. Once you create and migrate the database, you'll be able to access it.
+`docker-compose run web bundle exec rails generate rspec:install`
+      
+      Type 'n' when prompted to keep the project's updated spec helper files.
 
-* First run `docker-compose up` to build the project. Next, you'll need to add a database.
+`docker-compose run web bundle exec rake db:create`
 
-### Running Shell Commands
+`docker-compose run web bundle exec rake db:migrate`
 
-To access a shell environment to run `rails c`, run migrations, or run other `rake` and `rails` tasks such as `rails routes`, you'll need to do the following.
+`docker-compose run web bundle exec rake db:test:prepare`
 
-Run the following command in the root directory of the project:
+`docker-compose run web bundle exec rake db:seed`
 
-```
-$ docker-compose run api sh
-```
+You can now restart the server at localhost:3000 by running `docker-compose up`. The API endpoint is accessed in Postman or in the browser at localhost:3000/parks.
 
-It's not necessary for the containers to be running (with `$ docker-compose up`). Note that the service name has been changed from `web` to `api`.
+## Available API Endpoints
 
-This will open a shell where you can run any commands in the web application's environment. This includes the following commands:
+http://localhost:3000/parks returns all parks in the database
 
-* `$ bundle exec rake db:create` (and any other Rake commands)
-* `$ rails routes` and `$ rails c` (as well as any other Rails commands)
-* `$ bundle exec rspec` (to run tests)
-* `$ irb` (if you just need a basic Ruby REPL)
+http://localhost:3000/stateparks returns only state parks
 
-Once you create and migrate the database, you can go to `http://localhost:3000/quotes` in Postman or the browser to see the API's response.
+http://localhost:3000/nationalparks returns only national parks
 
-### What if I want to add more gems to my project?
+http://localhost:3000/parks?location=STATE-ABBREVIATION replace STATE-ABBREVIATION with two-letter state abbreviation code to return only parks found in that state.
 
-You'll need to complete the following steps:
+## Project Testing
 
-* First, add the gems to the project.
+Within the root directory, run the command `docker-compose run web bundle exec rspec` to run the rspec tests of the project.
+Testing should output: **10 examples, 0 failures**
 
-* Run `docker-compose run web bundle install`. This will bundle the new gems.
+## Known Bugs
 
-* Next, run `docker-compose up --build`. This will rebuild the project.
+Route tests for PUT and DELETE requests do not run successfully.
 
-To read Docker's documentation on running projects using Ruby and Rails, see [Quickstart: Compose and Rails](https://docs.docker.com/compose/rails/).
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+Copyright (c) Kristen Hopper
+
+## Contact Information
+
+hopperdavis@gmail.com
