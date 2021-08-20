@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe All do
+describe Park do
   it {should have_many(:states)}
 end
