@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "post a park route", :type => :request do
 
   before do
-    post '/parks', params: { :name => 'test_park', :location => 'OR', :national => false, :state => true }
+    post '/parks', params: { :name => 'test_park', :location => 'OR', :state => true }
   end
 
   it 'returns the park name' do
