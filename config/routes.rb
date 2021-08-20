@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   Rails.application.routes.draw do
-    resources :quotes
+      # resources :park
+      resources :national
+      resources :state
+  
   end
 end
