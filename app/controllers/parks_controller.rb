@@ -11,29 +11,21 @@ class ParksController < ApplicationController
 
   def create
     @park = Park.create!(park_params)
-    # if (@park.national = false) && (@park.state = false)
-    #   render status: 401, json: {
-    #     message: "Either national or state should be set to true"
-    #   }
-    # elsif (@park.national = true) && (@park.state = true)
-    #   render status: 401, json: {
-    #     message: "Either national or state should be set to true but not both"
-    #   }
-    # else
+    if @park.national == @park.state
+      render status: 401, json: {
+        message: "Set either national or state parameter to true"
+      }
+    else
       json_response(@park, :created)
-    # end
+    end
   end
 
   def update
     @park = Park.find(params[:id])
     @park.update(park_params)
-    if (@park.national = false) && (@park.state = false)
+    if @park.national == @park.state
       render status: 401, json: {
-        message: "Either national or state should be set to true"
-      }
-    elsif (@park.national = true) && (@park.state = true)
-      render status: 401, json: {
-        message: "Either national or state should be set to true but not both"
+        message: "Either national or state parameter should be set to true"
       }
     else
       render status: 200, json: {
@@ -44,7 +36,11 @@ class ParksController < ApplicationController
 
   def destroy
     @park = Park.find(params[:id])
-    @park.destroy
+    if @park.destroy
+      render status: 200, json: {
+        message: "This review has been deleted"
+      }
+    end
   end
 
   private
