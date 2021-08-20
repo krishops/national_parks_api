@@ -14,7 +14,7 @@ class Seed
 
   def generate_parks
     1.times do |i|
-      park = Park.create!()
+      park = Park.create!(list: "All")
         20.times do |i|
           state = State.create!(code: Faker::Address.unique.state_abbr, park_id: park.id)
           4.times do |i|

@@ -10,30 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_172927) do
+ActiveRecord::Schema.define(version: 2021_08_20_185537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "national_parks", force: :cascade do |t|
-    t.string "name"
-    t.integer "state_id"
-  end
-
   create_table "parks", force: :cascade do |t|
-  end
-
-  create_table "state_parks", force: :cascade do |t|
     t.string "name"
-    t.integer "state_id"
+    t.string "location"
+    t.boolean "national", default: false
+    t.boolean "state", default: false
   end
 
-  create_table "states", force: :cascade do |t|
-    t.string "code"
-    t.integer "park_id"
-  end
-
-  add_foreign_key "national_parks", "states"
-  add_foreign_key "state_parks", "states"
-  add_foreign_key "states", "parks"
 end
