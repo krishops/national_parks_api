@@ -57,7 +57,7 @@ class ParksController < ApplicationController
     @park = Park.find(params[:id])
     if @park.destroy
       render status: 200, json: {
-        message: "This review has been deleted"
+        message: "This entry has been deleted"
       }
     end
   end
